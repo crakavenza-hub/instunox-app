@@ -6,17 +6,19 @@
     {
       "src": "AINSTUNOX.jpeg",
       "sizes": "192x192",
-      "type": "image/jpeg"
+      "type": "image/jpeg",
+      "purpose": "any maskable"
     },
     {
       "src": "AINSTUNOX.jpeg",
       "sizes": "512x512",
-      "type": "image/jpeg"
+      "type": "image/jpeg",
+      "purpose": "any maskable"
     }
   ],
-  "start_url": "index.html",
-  "background_color": "#000000",
+  "start_url": "/instunox-app/index.html",
   "display": "standalone",
-  "scope": "./",
-  "theme_color": "#00d1ff"
+  "background_color": "#000000",
+  "theme_color": "#00d1ff",
+  "orientation": "portrait"
 }
