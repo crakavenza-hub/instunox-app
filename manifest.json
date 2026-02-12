@@ -10,9 +10,10 @@
       "purpose": "any maskable"
     }
   ],
-  "start_url": "/instunox-app/index.html",
+  "start_url": "/instunox-app/",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#00d1ff",
   "orientation": "portrait"
 }
+
