@@ -1,18 +1,12 @@
 {
   "short_name": "INSTUNOX",
   "name": "INSTUNOX Industrial Pro",
-  "description": "Calculadora técnica para tuberos de INSTUNOX",
+  "description": "Calculadora de tuberia INSTUNOX",
   "icons": [
     {
-      "src": "AINSTUNOX.jpeg",
-      "sizes": "192x192",
-      "type": "image/jpeg",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "AINSTUNOX.jpeg",
+      "src": "logo-app.png",
       "sizes": "512x512",
-      "type": "image/jpeg",
+      "type": "image/png",
       "purpose": "any maskable"
     }
   ],
