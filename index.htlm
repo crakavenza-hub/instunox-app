@@ -1,230 +1,164 @@
 <!DOCTYPE html>
-<html lang="ES">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>INSTUNOX INDUSTRIAL PRO</title>
-
-    <link rel="apple-touch-icon" href="AINSTUNOX.jpeg">
-    <link rel="icon" type="image/jpeg" href="AINSTUNOX.jpeg">
-
+    <title>INSTUNOX Industrial Pro</title>
+    <link rel="manifest" href="manifest.json">
     <style>
         :root {
-            --azul: #00d1ff; --rojo: #ff3131; --naranja: #ff9d00; --verde: #39ff14; --amarillo: #f7ff00; --gris: #222;
+            --azul-instunox: #00d1ff;
+            --oscuro: #1a1a1a;
         }
 
         body {
-            margin: 0;
-            padding: 10px;
-            background-color: #000;
-            /* FONDO DEL TALLER CON FILTRO DE CONTRASTE */
-            background-image: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.85)), 
-                              url('https://input-file-path/input-file-name.png'); 
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('taller_instunox.png');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            font-family: 'Arial Black', sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            color: white;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid var(--azul-instunox);
+            box-shadow: 0 0 20px rgba(0, 209, 255, 0.5);
+            object-fit: cover;
+        }
+
+        h1 { color: var(--azul-instunox); margin-top: 10px; font-size: 1.5rem; text-transform: uppercase; }
+
+        .card {
+            background: rgba(40, 40, 40, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid var(--azul-instunox);
+            margin-bottom: 20px;
+            backdrop-filter: blur(5px);
+        }
+
+        input, select {
+            width: 80%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #444;
+            background: #333;
+            color: white;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        button {
+            background: var(--azul-instunox);
+            color: black;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 85%;
+            margin-top: 10px;
             text-transform: uppercase;
         }
 
-        .placa-superior {
-            width: 95%;
-            max-width: 500px;
-            background: rgba(10, 10, 10, 0.95);
-            border: 3px solid var(--azul);
-            box-shadow: 0 0 25px var(--azul);
-            border-radius: 15px;
+        .result {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: var(--azul-instunox);
+            font-weight: bold;
             padding: 15px;
-            text-align: center;
-            margin-bottom: 20px;
-            backdrop-filter: blur(10px);
+            border-top: 1px dashed #555;
         }
 
-        .logo-principal { width: 100%; max-width: 280px; filter: drop-shadow(0 0 10px var(--azul)); }
-
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
+        table {
             width: 100%;
-            max-width: 450px;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 0.8rem;
+            background: rgba(0, 0, 0, 0.8);
         }
 
-        @media (min-width: 900px) {
-            .grid { grid-template-columns: repeat(2, 450px); max-width: 950px; }
+        th, td {
+            border: 1px solid var(--azul-instunox);
+            padding: 8px;
+            text-align: center;
         }
 
-        .cajetin {
-            background: rgba(15, 15, 15, 0.9);
-            border-radius: 20px;
-            padding: 18px;
-            border: 2px solid;
-            display: flex;
-            flex-direction: column;
-            backdrop-filter: blur(8px);
-        }
+        th { background: var(--azul-instunox); color: black; }
 
-        .c-naranja { border-color: var(--naranja); }
-        .c-azul { border-color: var(--azul); }
-        .c-rojo { border-color: var(--rojo); }
-        .c-verde { border-color: var(--verde); }
-        .c-amarillo { border-color: var(--amarillo); }
-
-        h2 { color: #fff; font-size: 13px; margin: 0 0 12px 0; border-bottom: 1px solid #444; padding-bottom: 5px; text-align: center; letter-spacing: 1px; }
-
-        .pantalla-input {
-            background: #fff; color: #000; width: 100%; font-size: 18px; font-weight: bold; padding: 12px;
-            border-radius: 8px; text-align: center; margin-bottom: 8px; border: none; box-sizing: border-box;
-        }
-
-        .resultado-box {
-            background: rgba(0, 0, 0, 0.85); color: var(--verde); padding: 12px; border-radius: 8px;
-            font-family: 'Courier New', monospace; font-size: 14px; margin-top: 5px; border: 1px solid var(--verde);
-            min-height: 80px; display: flex; flex-direction: column; justify-content: center; align-items: center;
-        }
-
-        .btn-calc {
-            width: 100%; height: 50px; background: #fff; color: #000;
-            border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 14px; margin-top: 10px;
-        }
-
-        label { color: #ccc; font-size: 9px; display: block; margin-bottom: 4px; letter-spacing: 1px; }
-
-        /* ESTILOS TABLAS PÁG 58-59 */
-        .contenedor-tabla { overflow-x: auto; width: 100%; margin-top: 10px; }
-        .tabla-tecnica { width: 100%; border-collapse: collapse; font-size: 10px; color: #fff; text-align: center; }
-        .tabla-tecnica th { background: #333; color: var(--azul); padding: 8px; border: 1px solid #444; }
-        .tabla-tecnica td { padding: 6px; border: 1px solid #222; background: rgba(20,20,20,0.5); }
-        
-        .tabla-puntos { width: 100%; border-collapse: collapse; font-size: 12px; }
-        .tabla-puntos td { padding: 4px; text-align: center; border-bottom: 1px solid #333; color: var(--verde); }
+        .footer { font-size: 0.7rem; margin-top: 30px; opacity: 0.6; }
     </style>
 </head>
 <body>
 
-    <div class="placa-superior">
-        <img src="AINSTUNOX.jpeg" class="logo-principal" alt="INSTUNOX">
+    <div class="header">
+        <img src="AINSTUNOX.jpeg" alt="Logo INSTUNOX" class="logo">
+        <h1>INSTUNOX Industrial</h1>
     </div>
 
-    <div class="grid">
-        <div class="cajetin c-azul">
-            <h2>INJERTO UNIVERSAL (8 PTS)</h2>
-            <label>COLECTOR Ø EXT (MM)</label><input type="number" id="colector" class="pantalla-input" value="114.3">
-            <label>INJERTO Ø EXT (MM)</label><input type="number" id="injerto" class="pantalla-input" value="60.3">
-            <label>ÁNGULO (°)</label><input type="number" id="angInjerto" class="pantalla-input" value="90">
-            <div class="resultado-box">
-                <table class="tabla-puntos">
-                    <thead><tr style="font-size: 10px; color: #aaa;"><th>PT</th><th>GRADOS</th><th>CORTE</th></tr></thead>
-                    <tbody id="tabla-body"></tbody>
-                </table>
-            </div>
-            <button class="btn-calc" onclick="calcInjerto()">GENERAR TRAZADO</button>
-        </div>
+    <div class="card">
+        <h3>CALCULADORA DE TUBERIA</h3>
+        <p>Bayoneta con Codos de 45°</p>
+        <input type="number" id="desplazamiento" placeholder="Desplazamiento (mm)">
+        <button onclick="calcularBayoneta()">Calcular Tramo Central</button>
+        <div id="resBayoneta" class="result"></div>
+    </div>
 
-        <div class="cajetin c-naranja">
-            <h2>CÁLCULO DE BAYONETA (45°)</h2>
-            <label>OFFSET / DESPLAZAMIENTO (MM)</label><input type="number" id="offset" class="pantalla-input" value="300">
-            <label>AVANCE DE 1 CODO (MM)</label><input type="number" id="avance" class="pantalla-input" value="76">
-            <div class="resultado-box" style="font-size:20px; text-align:center;" id="res-bayoneta">---</div>
-            <button class="btn-calc" onclick="calcBayoneta()">CALCULAR NIPLE</button>
-        </div>
+    <div class="card">
+        <h3>TABLA TÉCNICA (Pág. 58-59)</h3>
+        <p>Estándar Stainless Steel (mm)</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>DN (Pulg)</th>
+                    <th>Ext. (mm)</th>
+                    <th>Codo 90°</th>
+                    <th>Codo 45°</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1"</td><td>33.4</td><td>38</td><td>16</td></tr>
+                <tr><td>1 1/2"</td><td>48.3</td><td>57</td><td>24</td></tr>
+                <tr><td>2"</td><td>60.3</td><td>76</td><td>32</td></tr>
+                <tr><td>2 1/2"</td><td>73.0</td><td>95</td><td>40</td></tr>
+                <tr><td>3"</td><td>88.9</td><td>114</td><td>48</td></tr>
+                <tr><td>4"</td><td>114.3</td><td>152</td><td>64</td></tr>
+                <tr><td>6"</td><td>168.3</td><td>229</td><td>95</td></tr>
+            </tbody>
+        </table>
+    </div>
 
-        <div class="cajetin c-rojo">
-            <h2>CORTE DE CODO / AVANCE</h2>
-            <label>DIÁMETRO Ø EXT (MM)</label><input type="number" id="diamCodo" class="pantalla-input" value="60.3">
-            <label>ÁNGULO CORTE (°)</label><input type="number" id="angCodo" class="pantalla-input" value="45">
-            <div class="resultado-box" style="font-size:18px; text-align:center;" id="res-codo">---</div>
-            <button class="btn-calc" onclick="calcCodo()">CALCULAR LOMO/INT</button>
-        </div>
-
-        <div class="cajetin c-verde">
-            <h2>PESO ACERO INOXIDABLE</h2>
-            <label>DIÁMETRO Ø EXT (MM)</label><input type="number" id="diamPeso" class="pantalla-input" value="60.3">
-            <label>ESPESOR (MM)</label><input type="number" id="espesor" class="pantalla-input" value="3.91">
-            <div class="resultado-box" style="font-size:22px; text-align:center;" id="res-peso">---</div>
-            <button class="btn-calc" onclick="calcPeso()">CALCULAR KG/M</button>
-        </div>
-
-        <div class="cajetin c-amarillo" style="grid-column: 1 / -1;">
-            <h2>TABLA DE CONSULTA RÁPIDA (PÁG 58-59)</h2>
-            <div class="contenedor-tabla">
-                <table class="tabla-tecnica">
-                    <thead>
-                        <tr>
-                            <th>DN (PULG)</th>
-                            <th>ISO/SCH (OD)</th>
-                            <th>ALIM. (OD)</th>
-                            <th>AVANCE 90°</th>
-                            <th>AVANCE 45°</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>1/2"</td><td>21.3 mm</td><td>18.0 mm</td><td>38 mm</td><td>16 mm</td></tr>
-                        <tr><td>3/4"</td><td>26.7 mm</td><td>23.0 mm</td><td>38 mm</td><td>16 mm</td></tr>
-                        <tr><td>1"</td><td>33.7 mm</td><td>25.4 mm</td><td>38 mm</td><td>16 mm</td></tr>
-                        <tr><td>1 1/4"</td><td>42.4 mm</td><td>33.7 mm</td><td>48 mm</td><td>20 mm</td></tr>
-                        <tr><td>1 1/2"</td><td>48.3 mm</td><td>40.0 mm</td><td>57 mm</td><td>24 mm</td></tr>
-                        <tr><td>2"</td><td>60.3 mm</td><td>53.0 mm</td><td>76 mm</td><td>32 mm</td></tr>
-                        <tr><td>2 1/2"</td><td>76.1 mm</td><td>70.0 mm</td><td>95 mm</td><td>40 mm</td></tr>
-                        <tr><td>3"</td><td>88.9 mm</td><td>85.0 mm</td><td>114 mm</td><td>47 mm</td></tr>
-                        <tr><td>4"</td><td>114.3 mm</td><td>104.0 mm</td><td>152 mm</td><td>64 mm</td></tr>
-                    </tbody>
-                </table>
-            </div>
-            <p style="color: #666; font-size: 8px; text-align: center; margin-top: 10px;">DATOS SEGÚN ESTÁNDAR RADIO LARGO (1.5D)</p>
-        </div>
+    <div class="footer">
+        ESTA CALCULADORA NO TIENE MINÚSCULAS <br>
+        PROPIEDAD DE INSTUNOX © 2026
     </div>
 
     <script>
-        function calcInjerto() {
-            let D = parseFloat(document.getElementById('colector').value);
-            let d = parseFloat(document.getElementById('injerto').value);
-            let a = (parseFloat(document.getElementById('angInjerto').value) || 90) * Math.PI / 180;
-            let R = D/2; let r = d/2;
-            let tbody = document.getElementById('tabla-body');
-            tbody.innerHTML = "";
-            let h_vals = [];
-            for(let i=0; i<=315; i+=45) {
-                let m = i * Math.PI / 180;
-                let h = (Math.sqrt(R*R - Math.pow(r*Math.sin(m),2))/Math.sin(a)) - (r*Math.cos(m)/Math.tan(a));
-                h_vals.push({g: i, v: h});
+        function calcularBayoneta() {
+            const d = document.getElementById('desplazamiento').value;
+            if(d > 0) {
+                // Constante para codos de 45°: 1.414
+                const resultado = d * 1.414;
+                document.getElementById('resBayoneta').innerHTML = 
+                    "LONGITUD EJE A EJE: " + resultado.toFixed(1) + " mm";
+            } else {
+                alert("POR FAVOR, INTRODUCE UN VALOR");
             }
-            let min = Math.min(...h_vals.map(x => x.v));
-            h_vals.forEach((x, idx) => {
-                tbody.innerHTML += `<tr><td>${idx+1}</td><td>${x.g}°</td><td>${Math.abs(x.v - min).toFixed(2)} MM</td></tr>`;
-            });
         }
-
-        function calcBayoneta() {
-            let offset = parseFloat(document.getElementById('offset').value);
-            let avance = parseFloat(document.getElementById('avance').value);
-            let hipo = offset * 1.4142; // Hipotenusa a 45°
-            let niple = hipo - (avance * 2); // Restamos los dos avances de los codos
-            document.getElementById('res-bayoneta').innerHTML = "HIPO: " + hipotenusaFormat(hipo) + " MM<br>NIPLE: " + niple.toFixed(2) + " MM";
-        }
-
-        function hipotenusaFormat(h) { return h.toFixed(2); }
-
-        function calcCodo() {
-            let d = parseFloat(document.getElementById('diamCodo').value);
-            let ang = parseFloat(document.getElementById('angCodo').value);
-            let radioCentro = d * 1.5; 
-            let lomo = (radioCentro + (d/2)) * Math.tan((ang / 2) * Math.PI / 180);
-            let interior = (radioCentro - (d/2)) * Math.tan((ang / 2) * Math.PI / 180);
-            document.getElementById('res-codo').innerHTML = "LOMO: " + lomo.toFixed(2) + " MM<br>INT: " + interior.toFixed(2) + " MM";
-        }
-
-        function calcPeso() {
-            let d = parseFloat(document.getElementById('diamPeso').value);
-            let e = parseFloat(document.getElementById('espesor').value);
-            let peso = (d - e) * e * 0.02491;
-            document.getElementById('res-peso').innerText = peso.toFixed(2) + " KG/M";
-        }
-
-        window.onload = () => { calcInjerto(); calcBayoneta(); calcCodo(); calcPeso(); };
     </script>
+
 </body>
 </html>
+
